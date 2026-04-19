@@ -1,68 +1,154 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mehmet Eren ÇAKMAK | Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!-- DOCTYPE: Tarayıcıya "bu HTML5 dosyasıdır" diyoruz -->
 
-<!-- NAV -->
+<html lang="en">
+<!-- lang="en": Sayfanın dilini İngilizce olarak belirtiyoruz (SEO ve erişilebilirlik için önemli) -->
+
+<head>
+<!-- HEAD bölümü: Sayfanın görünmeyen arka plan ayarları buraya yazılır -->
+
+  <meta charset="UTF-8">
+  <!-- charset: Türkçe karakterlerin (ç, ş, ğ vs.) doğru görünmesi için karakter seti -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- viewport: Mobil cihazlarda sayfanın düzgün görünmesi için gerekli — responsive tasarımın temelidir -->
+
+  <title>Mehmet Eren ÇAKMAK | Portfolio</title>
+  <!-- title: Tarayıcı sekmesinde görünen yazı -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- preconnect: Google Fonts sunucusuna önceden bağlantı kur, fontlar daha hızlı yüklensin -->
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Google Fonts: DM Serif Display (başlıklar) ve DM Sans (normal metin) fontlarını içe aktarıyoruz -->
+
+  <link rel="stylesheet" href="style.css">
+  <!-- Harici CSS dosyasını bağlıyoruz — tüm tasarım kuralları orada -->
+
+</head>
+
+<body>
+<!-- BODY bölümü: Sayfada görünen her şey buraya yazılır -->
+
+
+<!-- ═══════════════════════════════════════════
+     NAV — Üst navigasyon çubuğu
+     position: fixed olduğu için sayfa kaydırılsa da hep üstte kalır
+     ═══════════════════════════════════════════ -->
 <nav>
+  <!-- Logo: # yerine #hero kullandık, tıklayınca sayfanın en üstüne döner -->
   <a class="nav-logo" href="#hero">MEC.</a>
+
+  <!-- ul/li ile navigasyon linkleri listesi -->
+  <div style="display:flex; align-items:center; gap:1rem;">
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
+  <button class="theme-btn" id="themeToggle">🌙</button>
+</div>
 </nav>
 
-<!-- HERO -->
+
+<!-- ═══════════════════════════════════════════
+     HERO — Ana karşılama bölümü
+     id="hero": Nav'daki #hero linki buraya scroll eder
+     ═══════════════════════════════════════════ -->
 <section id="hero">
   <div class="hero-inner">
+
+    <!-- Küçük etiket/badge — yeşil arka planlı küçük yazı -->
     <span class="hero-tag">Software Engineering Student</span>
+
+    <!-- h1: Sayfanın en önemli başlığı — SEO için kritik, her sayfada sadece 1 tane olmalı -->
     <h1 class="hero-title">
       Mehmet Eren Çakmak<br>
+      <!-- em: italik stil verir, aynı zamanda semantik olarak vurgu anlamı taşır -->
       <em>& Developer.</em>
     </h1>
+
+    <!-- Kısa açıklama metni -->
     <p class="hero-desc">
       I build clean, functional web applications with a focus on user experience. When I write code, I think about design — and when I design, I think about code.
     </p>
+
+    <!-- Butonlar grubu -->
     <div class="hero-actions">
+
+      <!-- download özelliği: Tıklandığında dosyayı açmak yerine indirmeye zorlar -->
+      <!-- href="cv.pdf": Aynı klasördeki cv.pdf dosyasına işaret eder -->
       <a href="cv.pdf" download class="btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <!-- SVG: Scalable Vector Graphics — küçük indirme ikonu, pikselleşmez -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
         Download CV
       </a>
+
+      <!-- Projeler bölümüne smooth scroll -->
       <a href="#projects" class="btn-outline">View My Projects →</a>
+
     </div>
 
+    <!-- Sosyal medya linkleri satırı -->
     <div class="social-row">
       <span class="social-label">Connect</span>
+
+      <!-- mailto: protokolü — tıklayınca e-posta uygulamasını açar -->
       <a href="mailto:mehmeterncakmak@gmail.com" class="social-link">
-        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="fill:none;width:14px;height:14px"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <!-- SVG e-posta ikonu -->
+        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="fill:none;width:14px;height:14px">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </svg>
         Email
       </a>
+
+      <!-- target="_blank": Linki yeni sekmede aç -->
+      <!-- rel="noopener": Güvenlik önlemi — açılan sayfanın ana sayfaya erişimini engeller -->
       <a href="https://www.linkedin.com/in/mehmet-eren-%C3%A7akmak-aab5b42a5/" target="_blank" rel="noopener" class="social-link">
-        <svg class="social-icon" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <svg class="social-icon" viewBox="0 0 24 24" style="width:14px;height:14px">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
         LinkedIn
       </a>
+
       <a href="https://github.com/mehmeterencakmak" target="_blank" rel="noopener" class="social-link">
-        <svg class="social-icon" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        <svg class="social-icon" viewBox="0 0 24 24" style="width:14px;height:14px">
+          <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+          <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </svg>
         GitHub
       </a>
+
     </div>
   </div>
 </section>
 
+
+<!-- ═══════════════════════════════════════════
+     ABOUT — Hakkımda bölümü
+     ═══════════════════════════════════════════ -->
 <section id="about">
+
+  <!-- Küçük üst etiket yazısı -->
   <p class="section-label">About Me</p>
+
+  <!-- reveal class'ı: JavaScript'te IntersectionObserver ile izlenir,
+       ekrana girince "visible" class'ı eklenir ve fade-in animasyonu çalışır -->
   <div class="about-grid reveal">
+
     <div>
-      <h2 class="about-title">Hi, I'm<br>Mehmet Eren Çakmak👋</h2>
+      <!-- h2: İkinci seviye başlık — section başlıkları için kullanılır -->
+      <h2 class="about-title">Hi, I'm<br>Mehmet Eren Çakmak 👋</h2>
+
+      <!-- p: Paragraf etiketi -->
       <p class="about-body">
         I'm a 3 year Software Engineering student at Halic University. I'm passionate about web technologies, software architecture, and user experience design.
       </p>
@@ -70,6 +156,8 @@
         In my free time, I contribute to open-source projects, experiment with new technologies, and build personal projects. I believe in continuous learning and growth.
       </p>
     </div>
+
+    <!-- İstatistik kutuları — CSS Grid ile 2x2 düzende gösterilir -->
     <div>
       <div class="stat-grid">
         <div class="stat-box">
@@ -90,10 +178,14 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- SKILLS -->
+
+<!-- ═══════════════════════════════════════════
+     SKILLS — Yetenekler bölümü
+     ═══════════════════════════════════════════ -->
 <section id="skills">
   <div class="skills-header">
     <div>
@@ -101,10 +193,15 @@
       <h2 class="skills-title">My Tech Stack</h2>
     </div>
   </div>
+
   <div class="skill-categories reveal">
+
+    <!-- Her skill-group bir kategoridir: Frontend, Backend, Languages, Tools -->
     <div class="skill-group">
       <div class="skill-group-name">Frontend</div>
       <div class="skill-tags">
+        <!-- span: Satır içi (inline) element — etiket/badge göstermek için ideal -->
+        <!-- skill-dot: CSS ile çizilen küçük yeşil nokta -->
         <span class="skill-tag"><span class="skill-dot"></span>HTML5</span>
         <span class="skill-tag"><span class="skill-dot"></span>CSS3</span>
         <span class="skill-tag"><span class="skill-dot"></span>JavaScript (ES6+)</span>
@@ -112,6 +209,7 @@
         <span class="skill-tag"><span class="skill-dot"></span>Responsive Design</span>
       </div>
     </div>
+
     <div class="skill-group">
       <div class="skill-group-name">Backend</div>
       <div class="skill-tags">
@@ -120,6 +218,7 @@
         <span class="skill-tag"><span class="skill-dot"></span>Node.js</span>
       </div>
     </div>
+
     <div class="skill-group">
       <div class="skill-group-name">Languages</div>
       <div class="skill-tags">
@@ -129,6 +228,7 @@
         <span class="skill-tag"><span class="skill-dot"></span>English (B2)</span>
       </div>
     </div>
+
     <div class="skill-group">
       <div class="skill-group-name">Tools & Other</div>
       <div class="skill-tags">
@@ -137,43 +237,59 @@
         <span class="skill-tag"><span class="skill-dot"></span>Figma</span>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- PROJECTS -->
+
+<!-- ═══════════════════════════════════════════
+     PROJECTS — Projeler bölümü
+     ═══════════════════════════════════════════ -->
 <section id="projects">
+
   <div class="projects-header reveal">
     <p class="section-label">Projects</p>
     <h2 class="projects-title">Selected Work</h2>
     <p class="projects-sub">A few projects I've built and shipped.</p>
   </div>
+
+  <!-- project-grid: CSS Grid ile kartları yan yana dizer, ekran küçüldükçe alt alta geçer -->
   <div class="project-grid reveal">
 
+    <!-- article: Semantik HTML — bağımsız bir içerik parçasını temsil eder (kart gibi) -->
     <article class="project-card">
+
+      <!-- Proje görseli alanı -->
       <div class="project-thumb">
-        <img src="images/work3.jpeg" alt="">
+        <!-- img: src = resim yolu, alt = resim yüklenemezse görünecek metin (erişilebilirlik) -->
+        <img src="images/work3.jpeg" alt="E-Commerce Demo Project">
       </div>
 
       <div class="project-body">
+        <!-- Teknoloji etiketleri -->
         <div class="project-tags">
           <span class="project-tag">HTML</span>
           <span class="project-tag">CSS</span>
           <span class="project-tag">JS</span>
         </div>
+
+        <!-- h3: Üçüncü seviye başlık — kart başlıkları için uygun -->
         <h3 class="project-name">E-Commerce Demo</h3>
         <p class="project-desc">A demo e-commerce website where users can browse products, add items to cart, and simulate a shopping experience. Built with HTML, CSS, and JavaScript.</p>
+
         <div class="project-links">
+          <!-- href="#": Henüz link yok, ileride gerçek demo linki buraya gelecek -->
           <a href="#" class="project-link" target="_blank" rel="noopener">Live Demo ↗</a>
           <a href="https://github.com/mehmeterencakmak" class="project-link" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
+
     </article>
 
     <article class="project-card">
       <div class="project-thumb">
-        <img src="images/work4.jpeg" alt="">
+        <img src="images/work4.jpeg" alt="Personal Portfolio Project">
       </div>
-
       <div class="project-body">
         <div class="project-tags">
           <span class="project-tag">React</span>
@@ -190,15 +306,14 @@
 
     <article class="project-card">
       <div class="project-thumb">
-        <img src="images/work5.jpeg" alt="">
+        <img src="images/work5.jpeg" alt="Freight and Logistics Project">
       </div>
-      
       <div class="project-body">
         <div class="project-tags">
           <span class="project-tag">React</span>
           <span class="project-tag">JavaScript</span>
         </div>
-        <h3 class="project-name">Freight & Logistics </h3>
+        <h3 class="project-name">Freight & Logistics</h3>
         <p class="project-desc">A freight and logistics company website featuring service listings, route information, and a contact form. Built with React and JavaScript.</p>
         <div class="project-links">
           <a href="https://erenakliyat.vercel.app/" class="project-link" target="_blank" rel="noopener">Live Demo ↗</a>
@@ -208,15 +323,13 @@
     </article>
 
     <article class="project-card">
-      
-        <div class="project-thumb">
-          <img src="images/work6.jpeg" alt="">
-        </div>
-      
+      <div class="project-thumb">
+        <img src="images/work6.jpeg" alt="My Blog Project">
+      </div>
       <div class="project-body">
         <div class="project-tags">
           <span class="project-tag">HTML</span>
-          <span class="project-tag">Css</span>
+          <span class="project-tag">CSS</span>
           <span class="project-tag">JavaScript</span>
         </div>
         <h3 class="project-name">My Blog</h3>
@@ -231,19 +344,32 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+
+<!-- ═══════════════════════════════════════════
+     CONTACT — İletişim bölümü
+     ═══════════════════════════════════════════ -->
 <section id="contact">
   <p class="section-label">Contact</p>
+
+  <!-- Sol: iletişim bilgileri | Sağ: form — CSS Grid ile 2 sütun -->
   <div class="contact-grid">
+
+    <!-- SOL TARAF: İletişim linkleri -->
     <div class="reveal">
       <h2 class="contact-title">Let's Talk<br>About Something.</h2>
       <p class="contact-desc">
         Have a project idea? Want to collaborate? Or just want to say hello? Leave a message and I'll get back to you.
       </p>
+
       <div class="contact-methods">
+
+        <!-- Her biri tıklanabilir link olarak tasarlandı -->
         <a href="mailto:mehmeterncakmak@gmail.com" class="contact-method-link">
           <div class="method-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2D5016" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
           </div>
           <div class="method-info">
             <div class="method-label">Email</div>
@@ -251,9 +377,14 @@
           </div>
           <span class="method-arrow">↗</span>
         </a>
+
         <a href="https://www.linkedin.com/in/mehmet-eren-%C3%A7akmak-aab5b42a5/" target="_blank" rel="noopener" class="contact-method-link">
           <div class="method-icon">
-            <svg viewBox="0 0 24 24" fill="#2D5016" style="width:16px;height:16px"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#2D5016" style="width:16px;height:16px">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
           </div>
           <div class="method-info">
             <div class="method-label">LinkedIn</div>
@@ -261,9 +392,13 @@
           </div>
           <span class="method-arrow">↗</span>
         </a>
+
         <a href="https://github.com/mehmeterencakmak" target="_blank" rel="noopener" class="contact-method-link">
           <div class="method-icon">
-            <svg viewBox="0 0 24 24" fill="#2D5016" style="width:16px;height:16px"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            <svg viewBox="0 0 24 24" fill="#2D5016" style="width:16px;height:16px">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+              <path d="M9 18c-4.51 2-5-2-7-2"/>
+            </svg>
           </div>
           <div class="method-info">
             <div class="method-label">GitHub</div>
@@ -271,42 +406,67 @@
           </div>
           <span class="method-arrow">↗</span>
         </a>
+
       </div>
     </div>
 
-    <!-- CONTACT FORM (ready for PHP backend) -->
+    <!-- SAĞ TARAF: İletişim formu -->
     <div class="reveal">
-      <!-- This form works with PHP backend: sends POST to contact.php -->
+      <!-- form: Kullanıcıdan veri toplamak için kullanılır
+           id="contactForm": JavaScript'te bu formu seçmek için kullanıyoruz -->
       <form class="contact-form" id="contactForm">
+
+        <!-- İki input yan yana — CSS Grid ile form-row içinde 2 sütun -->
         <div class="form-row">
           <div class="form-group">
+            <!-- label: Input ile ilişkilendirilmiş açıklama metni
+                 for="name": Input'un id'siyle eşleşir, tıklayınca input'a odaklanır -->
             <label class="form-label" for="name">Full Name</label>
+            <!-- input type="text": Tek satır metin girişi
+                 required: Boş bırakılırsa form gönderilmez -->
             <input class="form-input" type="text" id="name" name="name" placeholder="Your name" required>
           </div>
           <div class="form-group">
             <label class="form-label" for="email">Email</label>
+            <!-- type="email": Tarayıcı otomatik olarak @ işareti kontrolü yapar -->
             <input class="form-input" type="email" id="email" name="email" placeholder="you@example.com" required>
           </div>
         </div>
+
         <div class="form-group">
           <label class="form-label" for="subject">Subject</label>
+          <!-- required yok: Konu alanı zorunlu değil -->
           <input class="form-input" type="text" id="subject" name="subject" placeholder="How can I help you?">
         </div>
+
         <div class="form-group">
           <label class="form-label" for="message">Message</label>
+          <!-- textarea: Çok satırlı metin girişi — input'tan farklı olarak kapanış etiketi var -->
           <textarea class="form-textarea" id="message" name="message" placeholder="Write your message here..." required></textarea>
         </div>
+
+        <!-- Form gönderme sonucu mesajı buraya JavaScript ile yazılır (başarı/hata) -->
         <div class="form-status" id="formStatus"></div>
+
+        <!-- type="submit": Forma tıklayınca submit eventi tetikler -->
         <button type="submit" class="btn-primary" style="align-self: flex-start; width: 100%;">
           Send Message
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
         </button>
+
       </form>
     </div>
+
   </div>
 </section>
 
-<!-- FOOTER -->
+
+<!-- ═══════════════════════════════════════════
+     FOOTER — Alt bilgi alanı
+     ═══════════════════════════════════════════ -->
 <footer>
   <span>© 2025 Mehmet Eren ÇAKMAK. All rights reserved.</span>
   <div style="display:flex; gap:1.5rem;">
@@ -316,73 +476,154 @@
   </div>
 </footer>
 
+
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT — Sayfa etkileşimleri
+     Script etiketleri body'nin en sonuna yazılır çünkü:
+     HTML yüklenmeden önce çalışırsa elementleri bulamaz
+     ═══════════════════════════════════════════ -->
 <script>
-// ── SCROLL REVEAL ──
+
+// ── SCROLL REVEAL ANİMASYONU ──────────────────────────────
+// IntersectionObserver: Bir element ekrana girdiğinde bize haber verir
 const revealEls = document.querySelectorAll('.reveal');
+// querySelectorAll: CSS seçicisiyle tüm eşleşen elementleri seçer (NodeList döner)
+
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); } });
+  // entries: Gözlemlenen tüm elementlerin listesi
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      // isIntersecting: Element ekranda görünür durumda mı?
+      el.target.classList.add('visible');
+      // classList.add: Elemente yeni bir CSS class'ı ekler
+      // CSS'de .reveal.visible { opacity: 1; transform: none; } tanımlı
+    }
+  });
 }, { threshold: 0.12 });
+// threshold: 0.12 = elementin %12'si görününce tetikle
+
+// Her .reveal elementini gözlemlemeye başla
 revealEls.forEach(el => observer.observe(el));
 
-// ── ACTIVE NAV LINK ──
+
+// ── AKTİF NAV LİNKİ ──────────────────────────────────────
+// Hangi bölümde olduğumuzu tespit edip o nav linkini vurgular
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
+
 window.addEventListener('scroll', () => {
+  // scroll eventi: Kullanıcı sayfayı kaydırdıkça sürekli tetiklenir
   let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+
+  sections.forEach(s => {
+    // offsetTop: Elementin sayfanın en üstünden yüksekliği (px)
+    // scrollY: Şu an kaydırılan miktar (px)
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    // -100: Nav çubuğunun yüksekliği kadar önceden aktif et
+  });
+
   navLinks.forEach(a => {
+    // Aktif bölümün linkini koyu renkle vurgula
     a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text-primary)' : '';
     a.style.fontWeight = a.getAttribute('href') === '#' + current ? '500' : '';
   });
 });
 
-// ── CONTACT FORM ──
-// Currently handles front-end validation only.
-// For PHP backend: add action="contact.php" method="POST" and uncomment the fetch block below.
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const status = document.getElementById('formStatus');
-  const btn = this.querySelector('button[type="submit"]');
-  const formData = new FormData(this);
 
-  // Basic validation
+// ── İLETİŞİM FORMU ───────────────────────────────────────
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  // addEventListener('submit'): Form gönderilmeye çalışıldığında çalışır
+  // async function: İçinde await kullanabilmek için async tanımladık
+
+  e.preventDefault();
+  // preventDefault(): Formun sayfayı yenilemesini engeller (varsayılan davranış)
+
+  const status = document.getElementById('formStatus');
+  // Sonuç mesajını göstereceğimiz div
+
+  const btn = this.querySelector('button[type="submit"]');
+  // this: Formu temsil eder — form içindeki submit butonunu seçiyoruz
+
+  const formData = new FormData(this);
+  // FormData: Form verilerini key-value çiftleri olarak toplar
+  // PHP'ye fetch ile göndermeye hazır hale getirir
+
+  // ── DOĞRULAMA ──
   const name = formData.get('name').trim();
+  // .get('name'): name="name" olan input'un değerini alır
+  // .trim(): Baştaki ve sondaki boşlukları siler
+
   const email = formData.get('email').trim();
   const message = formData.get('message').trim();
 
   if (!name || !email || !message) {
+    // Zorunlu alanlar boşsa hata göster, formu gönderme
     status.textContent = 'Please fill in all required fields.';
     status.className = 'form-status error';
-    return;
+    return; // Fonksiyondan çık
   }
 
   btn.textContent = 'Sending...';
   btn.disabled = true;
+  // disabled: Butonu devre dışı bırak — çift gönderimi önler
 
-  // Uncomment for PHP backend integration:
-  
+  // ── PHP BACKEND'E GÖNDER ──
+  // fetch: HTTP isteği yapar — burada contact.php'ye POST isteği atıyoruz
   try {
     const res = await fetch('contact.php', {
-      method: 'POST',
-      body: formData
+      method: 'POST',   // POST: Veriyi URL'de değil, istek gövdesinde gönderir
+      body: formData    // FormData'yı direkt gövde olarak gönder
     });
+    // await: fetch tamamlanana kadar bekle (sayfa donmaz, arka planda çalışır)
+
     const data = await res.json();
+    // res.json(): PHP'nin döndürdüğü JSON yanıtı JavaScript objesine çevirir
+    // PHP tarafında: echo json_encode(['success' => true, 'message' => '...']);
+
     if (data.success) {
       status.textContent = 'Message received! I\'ll get back to you soon.';
       status.className = 'form-status success';
-      this.reset();
+      this.reset(); // Formu temizle
     } else {
       throw new Error(data.message || 'Something went wrong.');
+      // throw: Hata fırlatır, catch bloğuna düşer
     }
   } catch(err) {
+    // catch: try bloğunda hata oluşursa burası çalışır
     status.textContent = err.message;
     status.className = 'form-status error';
   } finally {
-    btn.innerHTML = 'Send Message <svg ...>';
-    btn.disabled = false;
+    // finally: Hata olsa da olmasa da her zaman çalışır
+    btn.innerHTML = 'Send Message <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+    btn.disabled = false; // Butonu tekrar aktif et
   }
-  
+
 });
+// ── DARK MODE ──
+const themeBtn = document.getElementById('themeToggle');
+
+// Sayfa açılınca localStorage'dan temayı oku
+if (localStorage.getItem('tema') === 'dark') {
+  document.body.classList.add('dark');
+  themeBtn.textContent = '☀️';
+}
+
+// Butona tıklanınca tema değiştir
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+
+  if (document.body.classList.contains('dark')) {
+    themeBtn.textContent = '☀️';
+    localStorage.setItem('tema', 'dark');
+  } else {
+    themeBtn.textContent = '🌙';
+    localStorage.setItem('tema', 'light');
+  }
+});
+
 </script>
+
 </body>
 </html>
