@@ -83,6 +83,15 @@ function val(array|null $row, string $key): string
         <span class="user-icon">👤</span>
         <?= htmlspecialchars($_SESSION['admin_user']) ?>
       </div>
+      <div class="theme-switch-row" id="themeToggle">
+        <span class="theme-switch-label">
+          <span class="switch-icon">☀️</span>
+          <span class="switch-text">Dark Mode</span>
+        </span>
+        <div class="switch-track" id="switchTrack">
+          <div class="switch-thumb"></div>
+        </div>
+      </div>
       <a href="logout.php" class="logout-btn">Logout</a>
     </div>
 
@@ -132,7 +141,7 @@ function val(array|null $row, string $key): string
       </h2>
 
       <!-- Add / Edit form -->
-      <form method="POST" action="project_save.php" class="project-form">
+      <form method="POST" action="project_save.php" class="project-form" enctype="multipart/form-data">
 
         <?php if ($editProject): ?>
           <input type="hidden" name="id" value="<?= (int)$editProject['id'] ?>">
@@ -159,26 +168,44 @@ function val(array|null $row, string $key): string
                     placeholder="Short project description..." required><?= val($editProject, 'description') ?></textarea>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">Image Path / URL</label>
-            <input class="form-input" type="text" name="image_url"
-                   value="<?= val($editProject, 'image_url') ?>"
-                   placeholder="images/work1.jpeg">
+        <!-- Image Upload -->
+        <div class="form-group">
+          <label class="form-label">Project Image</label>
+          <div class="upload-zone" id="uploadZone">
+            <input type="file" name="image_file" id="imageFile" accept="image/*" class="upload-input">
+            <?php $currentImg = val($editProject, 'image_url'); ?>
+            <div class="upload-placeholder" id="uploadPlaceholder" style="<?= $currentImg ? 'display:none' : '' ?>">
+              <div class="upload-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+              </div>
+              <p class="upload-text">Click to upload or drag &amp; drop</p>
+              <p class="upload-hint">PNG, JPG, WEBP, GIF — max 5 MB</p>
+            </div>
+            <div class="upload-preview-wrap" id="uploadPreviewWrap" style="<?= $currentImg ? '' : 'display:none' ?>">
+              <img id="uploadPreview" src="<?= $currentImg ? '../' . $currentImg : '' ?>" alt="Preview">
+              <button type="button" class="upload-remove" id="uploadRemove">✕ Remove</button>
+            </div>
           </div>
+          <input type="hidden" name="image_url" id="imageUrlHidden" value="<?= $currentImg ?>">
+        </div>
+
+        <div class="form-row">
           <div class="form-group">
             <label class="form-label">Live Demo URL</label>
             <input class="form-input" type="url" name="demo_url"
                    value="<?= val($editProject, 'demo_url') ?>"
                    placeholder="https://example.com">
           </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">GitHub URL</label>
-          <input class="form-input" type="url" name="github_url"
-                 value="<?= val($editProject, 'github_url') ?>"
-                 placeholder="https://github.com/...">
+          <div class="form-group">
+            <label class="form-label">GitHub URL</label>
+            <input class="form-input" type="url" name="github_url"
+                   value="<?= val($editProject, 'github_url') ?>"
+                   placeholder="https://github.com/...">
+          </div>
         </div>
 
         <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:.5rem;">
@@ -296,6 +323,51 @@ function val(array|null $row, string $key): string
 </div>
 
 <script>
+// ── IMAGE UPLOAD ZONE ────────────────────────────────────
+const zone        = document.getElementById('uploadZone');
+const fileInput   = document.getElementById('imageFile');
+const placeholder = document.getElementById('uploadPlaceholder');
+const previewWrap = document.getElementById('uploadPreviewWrap');
+const previewImg  = document.getElementById('uploadPreview');
+const removeBtn   = document.getElementById('uploadRemove');
+const hiddenUrl   = document.getElementById('imageUrlHidden');
+
+if (zone) {
+  zone.addEventListener('click', () => fileInput.click());
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) showPreview(file);
+  });
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files[0]) showPreview(fileInput.files[0]);
+  });
+
+  removeBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    fileInput.value = '';
+    hiddenUrl.value = '';
+    previewImg.src  = '';
+    previewWrap.style.display  = 'none';
+    placeholder.style.display  = 'flex';
+  });
+}
+
+function showPreview(file) {
+  if (!file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    previewImg.src             = ev.target.result;
+    placeholder.style.display  = 'none';
+    previewWrap.style.display  = 'flex';
+  };
+  reader.readAsDataURL(file);
+}
+
 // Highlight active sidebar link on scroll
 const sections = document.querySelectorAll('section[id]');
 const links    = document.querySelectorAll('.sidebar-link');
@@ -305,6 +377,27 @@ window.addEventListener('scroll', () => {
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
   links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
 }, { passive: true });
+
+// Theme toggle (iOS switch)
+const themeRow  = document.getElementById('themeToggle');
+const track     = document.getElementById('switchTrack');
+const switchIcon = themeRow.querySelector('.switch-icon');
+const switchText = themeRow.querySelector('.switch-text');
+
+function applyTheme(isLight) {
+  document.body.classList.toggle('light', isLight);
+  track.classList.toggle('on', isLight);
+  switchIcon.textContent = isLight ? '🌙' : '☀️';
+  switchText.textContent = isLight ? 'Light Mode' : 'Dark Mode';
+}
+
+applyTheme(localStorage.getItem('adminTema') === 'light');
+
+themeRow.addEventListener('click', () => {
+  const isLight = !document.body.classList.contains('light');
+  applyTheme(isLight);
+  localStorage.setItem('adminTema', isLight ? 'light' : 'dark');
+});
 </script>
 
 </body>

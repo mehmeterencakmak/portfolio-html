@@ -76,7 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="login-card">
 
-  <a href="../portfolio.html" class="login-logo">MEC.</a>
+  <div class="login-top">
+    <a href="../portfolio.html" class="login-logo">MEC.</a>
+    <button class="theme-toggle" id="themeToggle">☀️</button>
+  </div>
   <h1 class="login-title">Admin Login</h1>
   <p class="login-sub">Sign in to manage your portfolio content.</p>
 
@@ -125,9 +128,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </form>
 
   <p class="login-back"><a href="../portfolio.html">← Back to portfolio</a></p>
-  <p class="login-setup">First time? <a href="setup.php">Run setup to create admin account →</a></p>
 
 </div>
 
+<script>
+const btn = document.getElementById('themeToggle');
+
+function applyTheme(isLight) {
+  document.body.classList.toggle('light', isLight);
+  btn.textContent = isLight ? '🌙' : '☀️';
+}
+
+applyTheme(localStorage.getItem('adminTema') === 'light');
+
+btn.addEventListener('click', () => {
+  const isLight = !document.body.classList.contains('light');
+  applyTheme(isLight);
+  localStorage.setItem('adminTema', isLight ? 'light' : 'dark');
+});
+</script>
 </body>
 </html>
