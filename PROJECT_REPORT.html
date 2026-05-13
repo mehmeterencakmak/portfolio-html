@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Report — Mehmet Eren ÇAKMAK</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 13px;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 40px 60px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .report-header {
+      border-bottom: 3px solid #1a1a1a;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .report-header h1 {
+      font-size: 26px;
+      letter-spacing: -0.5px;
+    }
+    .report-header h1 span { color: #555; font-weight: 400; }
+    .meta-table {
+      margin-top: 14px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .meta-table td {
+      padding: 4px 12px 4px 0;
+      font-size: 12px;
+      color: #444;
+      vertical-align: top;
+    }
+    .meta-table td:first-child {
+      font-weight: 600;
+      color: #111;
+      white-space: nowrap;
+      min-width: 120px;
+    }
+
+    /* ── SECTIONS ── */
+    h2 {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 6px;
+      margin: 28px 0 12px;
+    }
+    p { line-height: 1.7; margin-bottom: 10px; color: #333; }
+
+    /* ── REQUIREMENTS TABLE ── */
+    .req-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+    .req-table th {
+      background: #1a1a1a;
+      color: #fff;
+      padding: 7px 10px;
+      text-align: left;
+      font-weight: 500;
+    }
+    .req-table td {
+      padding: 7px 10px;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+    }
+    .req-table tr:nth-child(even) td { background: #f9f9f9; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-done  { background: #dcfce7; color: #166534; }
+    .badge-info  { background: #dbeafe; color: #1e40af; }
+
+    /* ── FILE TREE ── */
+    .file-tree {
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px 18px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+    .file-tree .dir  { font-weight: 600; color: #1a1a1a; }
+    .file-tree .file { color: #555; }
+    .file-tree .note { color: #888; font-style: italic; }
+
+    /* ── DB SCHEMA ── */
+    .schema-block {
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 11.5px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .schema-block .kw  { color: #0550ae; font-weight: 600; }
+    .schema-block .tbl { color: #953800; font-weight: 600; }
+    .schema-block .cmt { color: #6a737d; }
+
+    /* ── LINKS SECTION ── */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .link-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 12px;
+    }
+    .link-card .lc-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #888;
+      margin-bottom: 4px;
+    }
+    .link-card .lc-val {
+      font-size: 12px;
+      color: #1a1a1a;
+      word-break: break-all;
+    }
+
+    /* ── FOOTER ── */
+    .report-footer {
+      margin-top: 40px;
+      padding-top: 14px;
+      border-top: 1px solid #ddd;
+      font-size: 11px;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media print {
+      body { padding: 20px 30px; }
+      .links-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ──────────────────────────────────────── -->
+<div class="report-header">
+  <h1>Full-Stack Web Portfolio <span>— Project Report</span></h1>
+  <table class="meta-table">
+    <tr>
+      <td>Student Name</td>
+      <td>Mehmet Eren ÇAKMAK</td>
+    </tr>
+    <tr>
+      <td>Student Email</td>
+      <td>mehmeterncakmak@gmail.com</td>
+    </tr>
+    <tr>
+      <td>Course</td>
+      <td>SEN3002 — Internet &amp; Web Programming</td>
+    </tr>
+    <tr>
+      <td>Institution</td>
+      <td>Halic University — Department of Software Engineering</td>
+    </tr>
+    <tr>
+      <td>Submission Date</td>
+      <td>14 May 2026</td>
+    </tr>
+    <tr>
+      <td>GitHub Repository</td>
+      <td>https://github.com/mehmeterencakmak/portfolio-html</td>
+    </tr>
+    <tr>
+      <td>Live Demo</td>
+      <td>http://mehmeterencakmak.page.gd</td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- ── 1. PROJECT OVERVIEW ─────────────────────────── -->
+<h2>1. Project Overview</h2>
+<p>
+  This project is a full-stack personal portfolio website developed as the final assignment for
+  the Internet &amp; Web Programming course. The portfolio serves as a professional showcase of
+  my skills, projects, and background as a Software Engineering student. It integrates all
+  technologies covered during the semester: <strong>HTML5, CSS3, JavaScript, PHP, and MySQL</strong>.
+</p>
+<p>
+  The application consists of a public-facing portfolio page and a protected admin dashboard.
+  Visitors can view my projects (loaded dynamically from a database via AJAX) and send me
+  messages through a validated contact form. The admin panel allows me to add, edit, and delete
+  portfolio projects after authenticating with a secure session-based login.
+</p>
+
+
+<!-- ── 2. TECHNICAL REQUIREMENTS ──────────────────── -->
+<h2>2. Technical Requirements Coverage</h2>
+
+<table class="req-table">
+  <thead>
+    <tr>
+      <th style="width:30%">Requirement</th>
+      <th style="width:12%">Status</th>
+      <th>Implementation Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>HTML5 Semantic Tags</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td><code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>,
+          <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code> used throughout.</td>
+    </tr>
+    <tr>
+      <td><strong>Tables &amp; Forms</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td>Education &amp; Training table in the About section; contact form and admin project form.</td>
+    </tr>
+    <tr>
+      <td><strong>Responsive Design</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td>CSS Grid and Flexbox used. Layout adapts from mobile (320px) to desktop via media queries.</td>
+    </tr>
+    <tr>
+      <td><strong>External Stylesheets</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td><code>style.css</code> for the portfolio; <code>admin/style.css</code> for the dashboard.
+          Google Fonts (DM Serif Display + DM Sans) for consistent branding.</td>
+    </tr>
+    <tr>
+      <td><strong>Dynamic UI / Image Slider</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td>Hero section text slider cycles through role titles every 3.2 s with dot navigation and fade transition.</td>
+    </tr>
+    <tr>
+      <td><strong>Dark / Light Mode Toggle</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td>Theme preference saved to <code>localStorage</code>; persists across page reloads.
+          Available on both portfolio page and admin dashboard.</td>
+    </tr>
+    <tr>
+      <td><strong>JS Form Validation</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td>Client-side checks: required fields, email regex, minimum message length (10 chars)
+          — all before any network request is made.</td>
+    </tr>
+    <tr>
+      <td><strong>DOM Manipulation</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td>Scroll-reveal animations (IntersectionObserver), active nav-link highlighting on scroll,
+          dynamic project card rendering from API response.</td>
+    </tr>
+    <tr>
+      <td><strong>Contact Form → MySQL</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td><code>contact.php</code> validates server-side and inserts into the <code>messages</code>
+          table using PDO prepared statements (SQL injection safe).</td>
+    </tr>
+    <tr>
+      <td><strong>Dynamic Content from DB</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td><code>api/projects.php</code> returns a JSON array of all projects fetched from MySQL.
+          The portfolio page renders them dynamically.</td>
+    </tr>
+    <tr>
+      <td><strong>AJAX / Fetch API</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td>All network calls use the native Fetch API (async/await). No page refreshes occur
+          for form submission or project loading.</td>
+    </tr>
+    <tr>
+      <td><strong>Sessions (Admin Auth)</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td><code>session_start()</code>, <code>$_SESSION['admin_id']</code> guard on all admin pages.
+          <code>session_regenerate_id(true)</code> on login to prevent session fixation.</td>
+    </tr>
+    <tr>
+      <td><strong>Cookies (Remember Me)</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td>"Remember Me" checkbox sets an HttpOnly cookie for 30 days via <code>setcookie()</code>
+          in <code>admin/index.php</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Admin Dashboard</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td>Add, edit, and delete projects. View all contact messages. Stats panel (total projects,
+          total messages). Protected by session; login via bcrypt-hashed password.</td>
+    </tr>
+    <tr>
+      <td><strong>SQL Export File</strong></td>
+      <td><span class="badge badge-done">Done</span></td>
+      <td><code>portfolio_db.sql</code> included in this ZIP — contains full schema
+          (<code>admin_users</code>, <code>projects</code>, <code>messages</code>) and sample data.</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- ── 3. FOLDER STRUCTURE ────────────────────────── -->
+<h2>3. Project Structure</h2>
+
+<div class="file-tree">
+  <span class="dir">portfolio-html/</span><br>
+  &nbsp;&nbsp;├── <span class="file">portfolio.html</span> &nbsp;<span class="note">— Main single-page portfolio</span><br>
+  &nbsp;&nbsp;├── <span class="file">style.css</span> &nbsp;<span class="note">— Global stylesheet (responsive)</span><br>
+  &nbsp;&nbsp;├── <span class="file">contact.php</span> &nbsp;<span class="note">— Contact form handler → saves to MySQL</span><br>
+  &nbsp;&nbsp;├── <span class="file">config.php</span> &nbsp;<span class="note">— PDO database connection (shared)</span><br>
+  &nbsp;&nbsp;├── <span class="file">config.example.php</span> &nbsp;<span class="note">— Template for local setup</span><br>
+  &nbsp;&nbsp;├── <span class="file">portfolio_db.sql</span> &nbsp;<span class="note">— Full database export</span><br>
+  &nbsp;&nbsp;├── <span class="file">PROJECT_REPORT.html</span> &nbsp;<span class="note">— This file</span><br>
+  &nbsp;&nbsp;├── <span class="dir">api/</span><br>
+  &nbsp;&nbsp;│ &nbsp;&nbsp;└── <span class="file">projects.php</span> &nbsp;<span class="note">— JSON API; fetches projects from DB</span><br>
+  &nbsp;&nbsp;├── <span class="dir">admin/</span><br>
+  &nbsp;&nbsp;│ &nbsp;&nbsp;├── <span class="file">index.php</span> &nbsp;<span class="note">— Login page (session + cookie)</span><br>
+  &nbsp;&nbsp;│ &nbsp;&nbsp;├── <span class="file">dashboard.php</span> &nbsp;<span class="note">— Protected admin panel</span><br>
+  &nbsp;&nbsp;│ &nbsp;&nbsp;├── <span class="file">project_save.php</span> &nbsp;<span class="note">— Add / update project handler</span><br>
+  &nbsp;&nbsp;│ &nbsp;&nbsp;├── <span class="file">project_delete.php</span> &nbsp;<span class="note">— Delete project handler</span><br>
+  &nbsp;&nbsp;│ &nbsp;&nbsp;├── <span class="file">logout.php</span> &nbsp;<span class="note">— Destroys session</span><br>
+  &nbsp;&nbsp;│ &nbsp;&nbsp;├── <span class="file">setup.php</span> &nbsp;<span class="note">— One-time DB + admin user setup</span><br>
+  &nbsp;&nbsp;│ &nbsp;&nbsp;└── <span class="file">style.css</span> &nbsp;<span class="note">— Admin panel stylesheet</span><br>
+  &nbsp;&nbsp;└── <span class="dir">images/</span><br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="file">img.jpeg, work2–6.jpeg</span> &nbsp;<span class="note">— Profile + project thumbnails</span>
+</div>
+
+
+<!-- ── 4. DATABASE SCHEMA ──────────────────────────── -->
+<h2>4. Database Schema</h2>
+
+<div class="schema-block">
+  <span class="cmt">-- Database: portfolio_db</span><br><br>
+  <span class="kw">TABLE</span> <span class="tbl">admin_users</span> &nbsp;<span class="cmt">-- Admin login credentials</span><br>
+  &nbsp;&nbsp;id, username, password_hash (bcrypt), created_at<br><br>
+  <span class="kw">TABLE</span> <span class="tbl">projects</span> &nbsp;<span class="cmt">-- Portfolio projects (managed via admin)</span><br>
+  &nbsp;&nbsp;id, title, description, tags, image_url, demo_url, github_url, created_at<br><br>
+  <span class="kw">TABLE</span> <span class="tbl">messages</span> &nbsp;<span class="cmt">-- Contact form submissions</span><br>
+  &nbsp;&nbsp;id, name, email, subject, message, ip_address, created_at
+</div>
+
+<p>
+  To import: open phpMyAdmin, create a database named <strong>portfolio_db</strong>,
+  then import <code>portfolio_db.sql</code>. Alternatively run:
+  <code>mysql -u root -p &lt; portfolio_db.sql</code>. After import, visit
+  <code>/admin/setup.php</code> once to seed the admin user
+  (default credentials: <strong>admin / Admin123!</strong>).
+</p>
+
+
+<!-- ── 5. KEY TECHNOLOGIES ────────────────────────── -->
+<h2>5. Technologies Used</h2>
+
+<table class="req-table">
+  <thead>
+    <tr><th>Layer</th><th>Technology</th><th>Usage</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Frontend</td>
+      <td>HTML5, CSS3</td>
+      <td>Semantic markup, responsive grid/flex layout, custom animations</td>
+    </tr>
+    <tr>
+      <td>Frontend</td>
+      <td>JavaScript (ES6+)</td>
+      <td>DOM manipulation, Fetch API (AJAX), form validation, localStorage</td>
+    </tr>
+    <tr>
+      <td>Backend</td>
+      <td>PHP 8</td>
+      <td>REST-style endpoints, session management, input sanitisation, file uploads</td>
+    </tr>
+    <tr>
+      <td>Database</td>
+      <td>MySQL 8 / PDO</td>
+      <td>Prepared statements, three-table schema, InfinityFree hosting</td>
+    </tr>
+    <tr>
+      <td>Hosting</td>
+      <td>InfinityFree</td>
+      <td>Free PHP + MySQL hosting for live demo</td>
+    </tr>
+    <tr>
+      <td>Version Control</td>
+      <td>Git / GitHub</td>
+      <td>Public repository with step-by-step commit history</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<!-- ── 6. SECURITY NOTES ──────────────────────────── -->
+<h2>6. Security Measures</h2>
+<p>
+  <strong>SQL Injection:</strong> All database queries use PDO prepared statements with bound parameters.
+  <strong>XSS:</strong> All user-supplied strings are passed through <code>htmlspecialchars()</code>
+  before output and through the custom <code>esc()</code> function in JavaScript.
+  <strong>Session Fixation:</strong> <code>session_regenerate_id(true)</code> is called immediately
+  after a successful login.
+  <strong>Password Storage:</strong> Admin password is hashed with PHP's <code>password_hash()</code>
+  (bcrypt, cost factor 10) and verified with <code>password_verify()</code>.
+  <strong>Credentials:</strong> <code>config.php</code> is excluded from the public Git repository
+  via <code>.gitignore</code>.
+</p>
+
+
+<!-- ── 7. SUBMISSION LINKS ────────────────────────── -->
+<h2>7. Submission Links</h2>
+
+<div class="links-grid">
+  <div class="link-card">
+    <div class="lc-label">GitHub Repository</div>
+    <div class="lc-val">github.com/mehmeterencakmak/portfolio-html</div>
+  </div>
+  <div class="link-card">
+    <div class="lc-label">Live Demo</div>
+    <div class="lc-val">http://mehmeterencakmak.page.gd</div>
+  </div>
+  <div class="link-card">
+    <div class="lc-label">Admin Panel</div>
+    <div class="lc-val">/admin/ &nbsp;|&nbsp; user: admin &nbsp;|&nbsp; pw: Admin123!</div>
+  </div>
+</div>
+
+
+<!-- ── FOOTER ──────────────────────────────────────── -->
+<div class="report-footer">
+  <span>Mehmet Eren ÇAKMAK — SEN3002 Final Project — May 2026</span>
+  <span>Halic University · Software Engineering</span>
+</div>
+
+</body>
+</html>
